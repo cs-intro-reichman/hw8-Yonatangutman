@@ -35,10 +35,9 @@ public class Network {
 
     name = name.substring(0, 1).toUpperCase() + name.substring(1);
 
-
     for (int i = 0; i < userCount; i++) {
-        if (users[i].getName().equals(name)) {
-        return users[i]; 
+        if (name.equals(users[i].getName())) {
+            return this.users[i];
         }
     }
     return null;
