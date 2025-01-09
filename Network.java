@@ -51,30 +51,27 @@ public class Network {
     public boolean addUser(String name) {
     if (this.userCount == users.length || getUser(name) != null) {
         return false;
+    }
 
-    } else {
-        this.users[userCount] = new User(name);
-        userCount++;
+    this.users[userCount] = new User(name);
+    userCount++;
         return true;
     }
-    }
-
     /** Makes the user with name1 follow the user with name2. If successful, returns true.
      *  If any of the two names is not a user in this network,
      *  or if the "follows" addition failed for some reason, returns false. */
     public boolean addFollowee(String name1, String name2) {
-        if (getUser(name1) == null || getUser(name2) == null) {
-            return false;
-
-        } else {
-
-        if (name1.equals(name2)) {
-            return false;
-        }
-            boolean follow = getUser(name1).addFollowee(name2);
-            return follow;
-        }
+    if (getUser(name1) == null || getUser(name2) == null) {
+        return false;
     }
+
+    if (name1.equals(name2)) {
+        return false;
+    }
+    boolean follow = getUser(name1).addFollowee(name2);
+        return follow;
+    }
+    
     
     /** For the user with the given name, recommends another user to follow. The recommended user is
      *  the user that has the maximal mutual number of followees as the user with the given name. */
