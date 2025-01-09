@@ -49,6 +49,9 @@ public class Network {
     *  If the given name is already a user in this network, does nothing and returns false;
     *  Otherwise, creates a new user with the given name, adds the user to this network, and returns true. */
     public boolean addUser(String name) {
+    if (name == null) {
+        return false;
+    }
     if (this.userCount == users.length || getUser(name) != null) {
         return false;
     }
@@ -76,22 +79,25 @@ public class Network {
     /** For the user with the given name, recommends another user to follow. The recommended user is
      *  the user that has the maximal mutual number of followees as the user with the given name. */
     public String recommendWhoToFollow(String name) {
-        int maxMutual = -1;
-        String mostMutualFreiend = "";
+    if (getUser(name) == null) {
+        return null;
+    }
+    int maxMutual = -1;
+    String mostMutualFreiend = "";
    
-        for (int i = 0; i < userCount; i++) {
+    for (int i = 0; i < userCount; i++) {
    
-           if (getUser(name).getName().equals(users[i].getName())) {
-               continue;
-           } 
+        if (getUser(name).getName().equals(users[i].getName())) {
+            continue;
+        } 
    
-           if (getUser(name).countMutual(users[i]) > maxMutual) {
-                maxMutual = getUser(name).countMutual(users[i]);
-                mostMutualFreiend = users[i].getName();
-           }
+        if (getUser(name).countMutual(users[i]) > maxMutual) {
+            maxMutual = getUser(name).countMutual(users[i]);
+            mostMutualFreiend = users[i].getName();
+        }
         }
    
-        return mostMutualFreiend;
+    return mostMutualFreiend;
     }
    
     /** Computes and returns the name of the most popular user in this network: 
