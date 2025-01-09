@@ -45,7 +45,7 @@
     public boolean follows(String name) {
     name = name.substring(0, 1).toUpperCase() + name.substring(1);
    
-    if (this.fCount==0) {
+    if (this.fCount<=0) {
         return false;
     }
     
@@ -62,7 +62,7 @@
     public boolean addFollowee(String name) {
         name = name.substring(0, 1).toUpperCase() + name.substring(1);
 
-        if (this.fCount==maxfCount || follows(name)) {
+        if (this.fCount== maxfCount || follows(name)) {
             return false;   
         }
         this.follows[fCount] = name;
