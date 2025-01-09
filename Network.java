@@ -29,7 +29,7 @@ public class Network {
      *  If there is no such user, returns null.
      *  Notice that the method receives a String, and returns a User object. */
     public User getUser(String name) {
-    if (userCount == 0) {
+    if (name == null) {
         return null;
     }
 
